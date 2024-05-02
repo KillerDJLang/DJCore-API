@@ -293,12 +293,6 @@ export class API
         const hbItem = tables.templates.handbook.Items.find((item) => item.Id === cloneItem)
         return hbItem.ParentId;
     }
-
-    private findItemBaseParentFromClone(tables: any, cloneItem: string)
-    {
-        const dbItem = tables.templates.items.find((item) => item._tpl === cloneItem)
-        return dbItem.parentId;
-    }
 //#endregion
 //
 //
