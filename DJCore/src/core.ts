@@ -5,6 +5,8 @@ import { LogTextColor }       from "@spt-aki/models/spt/logging/LogTextColor";
 import { ILogger }            from "@spt-aki/models/spt/utils/ILogger";
 import { API }                from "./api";
 
+const modName = "DJCore API";
+
 class DJCore implements IPreAkiLoadMod
 {
     /**
@@ -21,15 +23,15 @@ class DJCore implements IPreAkiLoadMod
     {
         logger.log(
             `[DJCore] ----------------------------------------------------------------`,
-            LogTextColor.CYAN
+            LogTextColor.MAGENTA
         );
         logger.log(
-            `[DJCore]               API is Loaded`,
-            LogTextColor.CYAN
+            `[DJCore]               ${modName} Loaded`,
+            LogTextColor.MAGENTA
         );
         logger.log(
             `[DJCore] ----------------------------------------------------------------`,
-            LogTextColor.CYAN
+            LogTextColor.MAGENTA
         );
     }
 }

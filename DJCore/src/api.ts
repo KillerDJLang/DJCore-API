@@ -18,25 +18,25 @@ export class API
     protected loyaltyLevel: Record<string, number> = {};
     
 //#region Item Gen
-    public createItem(itemConfig: any, customItem: CustomItemService, tables: any, jsonUtil: JsonUtil, configServer: ConfigServer, hashUtil: HashUtil, ragfairPriceService: RagfairPriceService): void
+    public createItem(itemConfig: any, customItem: CustomItemService, tables: any, jsonUtil: JsonUtil, configServer: ConfigServer, hashUtil: HashUtil, ragfairPriceService: RagfairPriceService, baseParentBackup: string): void
     {
-		const newItem: NewItemFromCloneDetails = {
-			itemTplToClone: itemConfig.ItemToClone,
-			overrideProperties: itemConfig.OverrideProperties,
-			parentId: itemConfig.parentID,
-			newId: itemConfig.newID,
-			handbookParentId: itemConfig.HandbookParent,
-			handbookPriceRoubles: itemConfig.HandbookPrice,
-			fleaPriceRoubles: itemConfig.HandbookPrice,
-			locales: {
-				"en": {
-					name: itemConfig.LocalePush.en.name,
-					shortName: itemConfig.LocalePush.en.shortName,
-					description: itemConfig.LocalePush.en.description
-				}
-			}
-		}
-		customItem.createItemFromClone(newItem);
+        const newItem: NewItemFromCloneDetails = {
+            itemTplToClone: itemConfig.ItemToClone,
+            overrideProperties: itemConfig.OverrideProperties,
+            parentId: tables.templates.items[itemConfig.ItemToClone]._parent,
+            newId: itemConfig.newID,
+            handbookParentId: this.findHandbookParentFromClone(tables, itemConfig.ItemToClone),
+            handbookPriceRoubles: this.findHandbookPriceFromClone(tables, itemConfig.ItemToClone),
+            fleaPriceRoubles: this.findHandbookPriceFromClone(tables, itemConfig.ItemToClone),
+            locales: {
+                "en": {
+                    name: itemConfig.LocalePush.en.name,
+                    shortName: itemConfig.LocalePush.en.shortName,
+                    description: itemConfig.LocalePush.en.description
+                }
+            }
+        }
+        customItem.createItemFromClone(newItem);
 
         if (itemConfig.CloneToFilters)
         {
@@ -280,6 +280,24 @@ export class API
                 tables.traders[itemConfig.TraderScheme?.TraderToUse].assort.loyal_level_items[`${itemConfig.newID}_${itemConfig.TraderScheme?.TraderToUse}}_${itemConfig.TraderScheme?.CurrencyToUse}_${itemConfig.TraderScheme?.Cost}_DJApi`] = itemConfig.TraderScheme?.LoyaltyLevel;
             }
         }
+    }
+
+    private findHandbookPriceFromClone(tables: any, cloneItem: string)
+    {
+        const hbItem = tables.templates.handbook.Items.find((item) => item.Id === cloneItem)
+        return hbItem.Price;
+    }
+
+    private findHandbookParentFromClone(tables: any, cloneItem: string)
+    {
+        const hbItem = tables.templates.handbook.Items.find((item) => item.Id === cloneItem)
+        return hbItem.ParentId;
+    }
+
+    private findItemBaseParentFromClone(tables: any, cloneItem: string)
+    {
+        const dbItem = tables.templates.items.find((item) => item._tpl === cloneItem)
+        return dbItem.parentId;
     }
 //#endregion
 //
