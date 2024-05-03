@@ -227,13 +227,15 @@ export class API
                 });
 
                 tables.templates.items[itemConfig.newID]._props.Slots.forEach(slot => {
+                if (slot._name != "mod_nvg")
+                {
                     newOffer.push({
-                         _id: hashUtil.generate(),
+                        _id: hashUtil.generate(),
                         _tpl: slot._props.filters[0].Filter[0],
                         parentId: newOffer[0]._id,
                         slotId: slot._name
-                    });
-                });
+                    });  
+                }})
 
                 if (itemConfig.TraderScheme?.AddManualCost)
                 {
