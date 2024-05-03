@@ -1,0 +1,76 @@
+{
+  "ItemTemplate": {
+    "ItemToClone": "",
+    "newID": "",
+    "OverrideProperties": {},
+    "LocalePush": {
+      "en": {
+        "name": "",
+        "shortName": "",
+        "description": ""
+      }
+    },
+    "TraderScheme": {
+      "AddToTrader": false,
+      "AddManualCost": false,
+      "TraderToUse": "",
+      "CurrencyToUse": "",
+      "Cost": 1,
+      "LoyaltyLevel": 1
+    },
+    "SlotInfo": {
+      "AddToSlot": false,
+      "Slot": 1
+    },
+    "BotPush": {
+      "AddToBots": false
+    },
+    "CasesPush": {
+      "CaseFiltersToAdd": [
+        "",
+        ""
+      ]
+    },
+    "LootPush": {
+      "AddToStaticLoot": false,
+      "LootContainersToAdd": [
+        "",
+        ""
+      ],
+      "StaticLootProbability": 1
+    },
+    "PushToFleaBlacklist": false,
+    "CloneToFilters": false,
+    "PushMastery": false
+  },
+  "ClothingTopTemplate": {
+        "NewOutfitID": "",
+        "BundlePath": "",
+        "HandsToClone": "",
+        "HandsBundlePath": "",
+        "LocaleName": "",
+        "TraderScheme": {
+            "AddToTrader": false,
+            "TraderToUse": "",
+            "CurrencyToUse": "",
+            "Cost": 1,
+            "LoyaltyLevel": 1,
+            "TraderStandingRequirement": 0,
+            "ProfileLevelRequirement": 1
+        }
+    },
+    "ClothingBottomTemplate": {
+        "NewBottomsID": "",
+        "BundlePath": "",
+        "LocaleName": "",
+        "TraderScheme": {
+            "AddToTrader": false,
+            "TraderToUse": "",
+            "CurrencyToUse": "",
+            "Cost": 1,
+            "LoyaltyLevel": 1,
+            "TraderStandingRequirement": 0,
+            "ProfileLevelRequirement": 1
+        }
+    }
+}
